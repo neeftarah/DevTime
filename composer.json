@@ -1,4 +1,6 @@
 {
+    "name": "neeftarah/devtime",
+    "description": "Projet de DEMO : Gestionnaire de temps & productivité pour développeurs freelances.",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
