@@ -1,0 +1,83 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: DevTime (Symfony + PHP ${{ matrix.php-versions }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['8.2']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: phpunit-bridge, phpmd
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pgsql
+          coverage: xdebug
+
+      - name: Copy .env.test.local
+        run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+
+      - name: Lint Composer config
+        run: composer validate --strict
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+#      - name: Run Migration
+#        run: |
+#          composer require --dev symfony/orm-pack
+#          php bin/console --env=test doctrine:database:drop --force
+#          php bin/console --env=test doctrine:database:create
+#          php bin/console --env=test doctrine:migrations:migrate -n
+#          php bin/console --env=test doctrine:fixtures:load -n
+#        env:
+#          DATABASE_URL: postgres://app_test:$ecretf0rt3st@127.0.0.1:${{ job.services.postgres.ports[5432] }}/app?charset=UTF-8
+
+      - name: Lint YAML files
+        run: php ./bin/console lint:yaml config --parse-tags
+
+      - name: Lint Twig templates
+        run: php ./bin/console lint:twig templates
+
+      - name: Lint Parameters and Services
+        run: php ./bin/console lint:container --no-debug
+
+      - name: Lint Doctrine entities
+        run: php ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+
+      - name: Codding standards
+        run: php vendor/bin/phpcs -v --standard=PSR2 --ignore=./src/Kernel.php ./src
+
+      - name: PHPStan
+        run: php vendor/bin/phpstan analyze
+
+      - name: Run PHPUnit tests
+        run: php vendor/bin/phpunit --testdox --coverage-text
+        env:
+          DATABASE_URL: postgres://app_test:$ecretf0rt3st@127.0.0.1:${{ job.services.postgres.ports[5432] }}/app?charset=UTF-8
+
+      - name: Check security vulnerabilities
+        uses: symfonycorp/security-checker-action@v4
+
+      - name: Check if any dependencies are compromised
+        run: composer audit
