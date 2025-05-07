@@ -22,6 +22,9 @@ class ClientFixtures extends Fixture
             $client->setCreatedAt(new \DateTimeImmutable());
             $client->setUpdatedAt(new \DateTimeImmutable());
             $manager->persist($client);
+
+            // 🔑 Ajout de référence
+            $this->addReference("client_$i", $client);
         }
 
         $manager->flush();
