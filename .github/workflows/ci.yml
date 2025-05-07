@@ -4,13 +4,8 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: DevTime (Symfony + PHP ${{ matrix.php-versions }})
+    name: DevTime (Symfony + PHP 8.2)
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php-versions: ['8.2']
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -18,7 +13,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: '8.2'
           tools: phpunit-bridge, phpmd
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pgsql
           coverage: xdebug
