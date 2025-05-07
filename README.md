@@ -1,6 +1,8 @@
 # DevTime
 _Projet de DEMO : Gestionnaire de temps & productivité pour développeurs freelances._
 
+[![CI Status](https://github.com/neeftarah/DevTime/workflows/CI/badge.svg)](https://github.com/neeftarah/DevTime/actions?query=workflow%3ACI)
+
 
 ## 🧱 Fonctionnalités principales
 - [ ] Gestion des clients (CRUD)
