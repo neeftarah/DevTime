@@ -8,7 +8,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[AsMessageHandler]
 class MailMessageHandler
 {
-    public function __invoke(MailMessage $message)
+    public function __invoke(MailMessage $message): void
     {
         // ... do some work - like sending an SMS message!
         echo sprintf(
