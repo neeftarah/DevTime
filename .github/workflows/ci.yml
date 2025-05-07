@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: DevTime (Symfony + PHP 8.2)
+    name: DevTime
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -13,7 +13,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           tools: phpunit-bridge, phpmd
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pgsql
           coverage: xdebug
