@@ -27,6 +27,12 @@
         </include>
     </source>
 
+    <coverage ignoreDeprecatedCodeUnits="true" disableCodeCoverageIgnore="true">
+        <report>
+            <html outputDirectory="./var/test/html-coverage" />
+        </report>
+    </coverage>
+
     <extensions>
     </extensions>
 </phpunit>
