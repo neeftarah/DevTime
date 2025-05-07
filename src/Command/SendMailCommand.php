@@ -7,7 +7,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;
@@ -33,21 +32,17 @@ class SendMailCommand extends Command
         ;
     }
 
+    /**
+     * @throws ExceptionInterface
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-
-        try {
-            $this->messageBus->dispatch(new MailMessage(
-                $input->getArgument('email'),
-                $input->getArgument('title'),
-                $input->getArgument('message')
-            ));
-        } catch (ExceptionInterface $e) {
-            $io->error('An error occurred while sending the email: ' . $e->getMessage());
-
-            return Command::FAILURE;
-        }
+        $this->messageBus->dispatch(new MailMessage(
+            $input->getArgument('email'),
+            $input->getArgument('title'),
+            $input->getArgument('message')
+        ));
 
         $io->success('Your email has been sent successfully!');
 
