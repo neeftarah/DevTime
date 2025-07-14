@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+<div id="client-list">
+    <h1>{{ client.name }} - <a href="{{ path('app_clients') }}">[Back]</a></h1>
+    <p><i>Creation : {{ client.createdAt | date('d-m-Y') }} | Last modification : {{ client.updatedAt | date('d-m-Y') }}</i></p>
+    <p><b>Email : </b><a href="mailto:{{ client.email }}" target="_blank">{{ client.email }}</a></p>
+    <p><b>Company : </b>{{ client.companyName }}</p>
+
+    <p>&nbsp;</p>
+
+    <h2>Projets</h2>
+    <ul>
+        {% for projet in client.projets %}
+            <li>
+                {{ projet.name }}
+{#                <a href="{{ path('app_projects_show', {'id': projet.id}) }}">{{ projet.name }}</a>#}
+                 -
+                {% if projet.status == 'in_progress' %}
+                    <span class="badge bg-warning text-dark">En cours</span>
+                {% elseif projet.status == 'completed' %}
+                    <span class="badge bg-success">Terminé</span>
+                {% elseif projet.status == 'pending' %}
+                    <span class="badge bg-secondary">En attente</span>
+                {% elseif projet.status == 'canceled' %}
+                    <span class="badge bg-danger">Annulé</span>
+                {% endif %}
+            </li>
+        {% else %}
+            <li>Aucun projet associé.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

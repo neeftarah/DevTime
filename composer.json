@@ -26,6 +26,7 @@
         "symfony/dotenv": "7.2.*",
         "symfony/expression-language": "7.2.*",
         "symfony/flex": "^2.8.1",
+        "symfony/form": "7.2.*",
         "symfony/framework-bundle": "7.2.*",
         "symfony/messenger": "7.2.*",
         "symfony/monolog-bundle": "^3.10",
@@ -97,7 +98,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": ">=4.1",
         "fakerphp/faker": "^1.24.1",
-        "friendsofphp/php-cs-fixer": "^3.82.2",
+        "friendsofphp/php-cs-fixer": "^3.83.0",
         "phpstan/phpstan": "^2.1.17",
         "phpunit/phpunit": "^12.2.7",
         "squizlabs/php_codesniffer": "^3.13.2",
