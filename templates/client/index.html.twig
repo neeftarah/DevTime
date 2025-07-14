@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+<div id="client-list">
+    <h1>Clients - <a href="{{ path('app_clients_create') }}">[Add]</a></h1>
+
+    <ul>
+        {% for client in clients %}
+        <li>
+            <a href="{{ path('app_clients_show', {'id': client.id}) }}">{{ client.name }}</a>
+            {% if client.companyName %} - <b>Company:</b> {{ client.companyName }} {% endif %}
+            |
+            <a href="{{ path('app_clients_edit', {'id': client.id}) }}">[Edit]</a>
+            |
+            <a href="{{ path('app_clients_delete', {'id': client.id}) }}">[Delete]</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
