@@ -38,13 +38,8 @@ final class ClientController extends AbstractController
      * Détail d’un client.
      */
     #[Route('/{id}', name: 'app_clients_show', requirements: ['id' => '\d+'])]
-    public function show(int $id): Response
+    public function show(Client $client): Response
     {
-        $client = $this->entityManager->getRepository(Client::class)->find($id);
-        if (!$client) {
-            throw $this->createNotFoundException('Client not found!');
-        }
-
         return $this->render('client/details.html.twig', [
             'client' => $client,
         ]);
@@ -100,13 +95,8 @@ final class ClientController extends AbstractController
      * Suppression d’un client.
      */
     #[Route('/{id}/delete', name: 'app_clients_delete', requirements: ['id' => '\d+'])]
-    public function delete(int $id): Response
+    public function delete(Client $client): Response
     {
-        $client = $this->entityManager->getRepository(Client::class)->find($id);
-        if (!$client) {
-            throw $this->createNotFoundException('Client not found!');
-        }
-
         // Remove the client from the database
         $this->entityManager->remove($client);
         $this->entityManager->flush();
