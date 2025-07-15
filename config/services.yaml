@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    env(LOG_KERNEL_EVENTS): 'false'
+    log_kernel_events: '%env(bool:LOG_KERNEL_EVENTS)%'
 
 services:
     # default configuration for services in *this* file
@@ -22,3 +24,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Listener\KernelEventListener:
+        arguments:
+            $logKernelEvents: '%log_kernel_events%'

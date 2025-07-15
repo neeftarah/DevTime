@@ -6,9 +6,12 @@ when@dev:
     monolog:
         handlers:
             main:
-                type: stream
-                path: "%kernel.logs_dir%/%kernel.environment%.log"
-                level: debug
+#                type: stream
+#                path: "%kernel.logs_dir%/%kernel.environment%.log"
+#                level: debug
+                type: rotating_file
+                path: "%kernel.project_dir%/logs/%kernel.environment%.log"
+                level: info
                 channels: ["!event"]
             # uncomment to get logging in your browser
             # you may have to allow bigger header sizes in your Web server configuration
