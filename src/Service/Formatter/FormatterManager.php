@@ -4,6 +4,9 @@ namespace App\Service\Formatter;
 
 class FormatterManager
 {
+    /**
+     * @var array<FormatterInterface>
+     */
     private array $formatters = [];
 
     public function addFormatter(FormatterInterface $formatter): void
