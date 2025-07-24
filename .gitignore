@@ -32,3 +32,5 @@ phpstan.neon
 ###< squizlabs/php_codesniffer ###
 
 /logs/
+
+/node_modules/

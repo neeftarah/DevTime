@@ -1,0 +1,41 @@
+grumphp:
+    ascii:
+        failed: ~
+        succeeded: ~
+    parallel:
+        enabled: true
+        max_workers: 32
+    ignore_unstaged_changes: true
+    fixer:
+        enabled: true
+        fix_by_default: true
+    tasks:
+        git_commit_message:
+            max_body_width: 0
+            max_subject_width: 0
+        git_blacklist: # Test your changes for blacklisted keywords, such as die(, var_dump( etc.
+            triggered_by: ['php']
+        composer:
+            strict: true
+        phplint:
+            triggered_by: ['php']
+        yamllint:
+            ignore_patterns:
+                - /vendor/
+                - /node_modules/
+                - /var/
+        twigcs:
+            exclude: [vendor]
+            triggered_by: ['twig']
+        doctrine_schema_validate:
+            skip_sync: true
+        phpcs:
+            triggered_by: ['php']
+        phpstan:
+            triggered_by: ['php']
+        phpunit:
+            testsuite: "Unit test"
+        securitychecker_symfony:
+            run_always: true
+    extensions:
+        - JonMldr\GrumPhpDoctrineTask\ExtensionLoader
