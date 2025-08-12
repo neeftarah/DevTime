@@ -34,6 +34,7 @@
         "symfony/runtime": "7.2.*",
         "symfony/security-bundle": "7.2.*",
         "symfony/serializer": "7.2.*",
+        "symfony/translation": "7.2.*",
         "symfony/twig-bundle": "7.2.*",
         "symfony/validator": "7.2.*",
         "symfony/yaml": "7.2.*",
@@ -96,8 +97,10 @@
         }
     },
     "require-dev": {
+        "behat/behat": "^3.23",
         "doctrine/doctrine-fixtures-bundle": ">=4.1",
         "fakerphp/faker": "^1.24.1",
+        "friends-of-behat/symfony-extension": "^2.6",
         "friendsofphp/php-cs-fixer": "^3.82.2",
         "friendsoftwig/twigcs": "^6.5",
         "jonmldr/grumphp-doctrine-task": "^3.0",
