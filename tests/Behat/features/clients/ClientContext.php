@@ -45,7 +45,6 @@ class ClientContext implements Context
         if ($this->client->getResponse()->getStatusCode() !== $code) {
             throw new \RuntimeException(
                 'Bad status code: ' . $this->client->getResponse()->getStatusCode()
-                . PHP_EOL . $this->client->getResponse()->getContent()
             );
         }
     }

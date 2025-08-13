@@ -25,10 +25,10 @@ services:
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-devtime}
       # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-P@ssw0rd4Tests}
+      POSTGRES_USER: ${POSTGRES_USER:-devtime}
     healthcheck:
-      test: ["CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}"]
+      test: ["CMD", "pg_isready", "-d", "${POSTGRES_DB:-devtime}", "-U", "${POSTGRES_USER:-devtime}"]
       timeout: 5s
       retries: 5
       start_period: 60s
