@@ -1,22 +1,17 @@
-# DevTime
-_Projet de DEMO : Gestionnaire de temps & productivité pour développeurs freelances._
+# Symfony Technical Laboratory
 
-[![CI Status](https://github.com/neeftarah/DevTime/workflows/CI/badge.svg)](https://github.com/neeftarah/DevTime/actions?query=workflow%3ACI)
+[![Build](https://github.com/neeftarah/DevTime/workflows/CI/badge.svg)](https://github.com/neeftarah/DevTime/actions?query=workflow%3ACI)
+[![Status](https://img.shields.io/badge/Status-In_Development-yellow)](https://img.shields.io/badge/Status-In_Development-yellow)
+
+__Objectif :__ Ce dépôt n'est __pas un produit fini__, mais un __environnement d'expérimentation__ pour l'intégration de stacks complexes sous Symfony.
+
+__Focus :__ J'y teste différentes briques industrielles (Messaging, Search, Cache) et l'implémentation de patterns d'architecture (DDD, Hexagonale) dans un contexte multi-services Dockerisé.
 
 
-## 🧱 Fonctionnalités principales
-- [ ] Gestion des clients (CRUD)
-- [ ] Gestion des projets associés à chaque client
-- [ ] Suivi du temps passé (start/stop timer + saisie manuelle)
-- [ ] Facturation automatique (génération PDF simplifiée ou CSV)
-- [ ] Notifications async (emails ou alertes via RabbitMQ)
-- [ ] Interface utilisateur simple avec React
-- [ ] API RESTful sécurisée (JWT/OAuth2)
-- [ ] Export de données (CSV/Excel)
 
-## 🧰 Stack proposée
+## 🧰 Stack proposée (En cours d'implémentation)
 ### 🔙 Back-end
-* PHP 8.x + Symfony 6+
+* PHP 8.x + Symfony 7+
 * API Platform
 * Doctrine (PostgreSQL)
 * PHPUnit, Behat
