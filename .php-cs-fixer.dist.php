@@ -6,10 +6,15 @@ $finder = (new PhpCsFixer\Finder())
         'var',
         'vendor',
         'node_modules',
+    ])
+    ->notPath([
+        'config/bundles.php',
+        'config/reference.php',
     ]);
 
 return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
     ])
-    ->setFinder($finder);
+    ->setFinder($finder)
+;

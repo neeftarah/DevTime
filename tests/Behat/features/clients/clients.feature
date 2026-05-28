@@ -22,7 +22,7 @@ Feature: API Clients
     """
     {
       "name": "Behat Test",
-      "email": "behat.test@devtime.test",
+      "email": "behat.test@sfsandbox.test",
       "companyName": "Behat Test Company",
       "createdAt": "2025-08-12T10:36:43.336Z",
       "projets": [
@@ -40,7 +40,7 @@ Feature: API Clients
     Given I send a "GET" request to "/api/clients/11"
     Then the response status code should be 200
     And the JSON should have a "name" property equals to "Behat Test"
-    And the JSON should have a "email" property equals to "behat.test@devtime.test"
+    And the JSON should have a "email" property equals to "behat.test@sfsandbox.test"
     And the JSON should have a "companyName" property equals to "Behat Test Company"
     And the JSON should have a "projets" array with 2 elements
 
@@ -49,7 +49,7 @@ Feature: API Clients
     """
     {
       "name": "Behat Patch",
-      "email": "behat.patch@devtime.test",
+      "email": "behat.patch@sfsandbox.test",
       "updatedAt": "2025-08-12T11:36:43.336Z",
       "projets": [
         "/api/projets/7",
@@ -63,7 +63,7 @@ Feature: API Clients
     Given I send a "GET" request to "/api/clients/10"
     Then the response status code should be 200
     And the JSON should have a "name" property equals to "Behat Patch"
-    And the JSON should have a "email" property equals to "behat.patch@devtime.test"
+    And the JSON should have a "email" property equals to "behat.patch@sfsandbox.test"
     And the JSON should have a "projets" array with 3 elements
 
   Scenario: Delete a Client and verify it is effectively deleted

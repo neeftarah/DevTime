@@ -1,16 +1,13 @@
-FROM php:8.4-fpm
+FROM php:8.5-fpm
 
 RUN apt-get update && apt-get install -y \
-    git unzip zip libpq-dev libicu-dev libxml2-dev libzip-dev libonig-dev libxslt1-dev \
+    git unzip zip libpq-dev libicu-dev libxml2-dev libzip-dev libonig-dev libxslt1-dev libc6-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Installation des extensions PHP nécessaires
 # json amqp redis  iconv sodium curl session  openssl ctype tokenizer xml
-RUN docker-php-ext-install pdo pdo_pgsql intl opcache zip xsl sockets
-
-# Installation de XDebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN docker-php-ext-install pdo pdo_pgsql intl zip xsl sockets
 
 # Installation de Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

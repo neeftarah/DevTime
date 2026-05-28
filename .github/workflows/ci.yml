@@ -4,16 +4,16 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: DevTime
+    name: Symfony-Sandbox
     runs-on: ubuntu-latest
 
     services:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: devtime
+          POSTGRES_USER: sfsandbox
           POSTGRES_PASSWORD: P@ssw0rd4Tests
-          POSTGRES_DB: devtime_test
+          POSTGRES_DB: sfsandbox_test
         ports:
           - 5432/tcp
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
@@ -25,7 +25,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@2.37.1
         with:
-          php-version: '8.3'
+          php-version: '8.5'
           tools: phpunit-bridge, phpmd
           extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pgsql
           coverage: xdebug
@@ -57,7 +57,7 @@ jobs:
           php bin/console --env=test doctrine:migrations:migrate -n
           php bin/console --env=test doctrine:fixtures:load -n
         env:
-          DATABASE_URL: postgres://devtime:P@ssw0rd4Tests@127.0.0.1:${{ job.services.postgres.ports[5432] }}/devtime?charset=UTF-8
+          DATABASE_URL: postgres://sfsandbox:P@ssw0rd4Tests@127.0.0.1:${{ job.services.postgres.ports[5432] }}/sfsandbox?charset=UTF-8
 
       - name: Lint YAML files
         run: php ./bin/console lint:yaml config --parse-tags
@@ -80,12 +80,12 @@ jobs:
       - name: Run PHPUnit tests
         run: php vendor/bin/phpunit --testdox --coverage-text
         env:
-          DATABASE_URL: postgres://devtime:P@ssw0rd4Tests@127.0.0.1:${{ job.services.postgres.ports[5432] }}/devtime?charset=UTF-8
+          DATABASE_URL: postgres://sfsandbox:P@ssw0rd4Tests@127.0.0.1:${{ job.services.postgres.ports[5432] }}/sfsandbox?charset=UTF-8
 
       - name: Run Behat tests
         run: vendor/bin/behat --format=progress
         env:
-          DATABASE_URL: postgres://devtime:P@ssw0rd4Tests@127.0.0.1:${{ job.services.postgres.ports[5432] }}/devtime?charset=UTF-8
+          DATABASE_URL: postgres://sfsandbox:P@ssw0rd4Tests@127.0.0.1:${{ job.services.postgres.ports[5432] }}/sfsandbox?charset=UTF-8
 
       - name: Check security vulnerabilities
         uses: symfonycorp/security-checker-action@v4

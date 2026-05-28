@@ -1,6 +1,6 @@
 # Symfony Technical Laboratory
 
-[![Build](https://github.com/neeftarah/DevTime/workflows/CI/badge.svg)](https://github.com/neeftarah/DevTime/actions?query=workflow%3ACI)
+[![Build](https://github.com/neeftarah/sfsandbox/workflows/CI/badge.svg)](https://github.com/neeftarah/sfsandbox/actions?query=workflow%3ACI)
 [![Status](https://img.shields.io/badge/Status-In_Development-yellow)](https://img.shields.io/badge/Status-In_Development-yellow)
 
 __Objectif :__ Ce dépôt n'est __pas un produit fini__, mais un __environnement d'expérimentation__ pour l'intégration de stacks complexes sous Symfony.
